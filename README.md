@@ -14,6 +14,19 @@
 							
 #### Kubernetes:	
 * prepare ansible-playbook for deploying Wordpress						
-* deploy WordPress with connection to DataBase						
+* deploy WordPress with connection to DataBase	
+
+Requirements:
+az-cli
 
 ### Steps:
+
+```
+git clone https://github.com/rlnq/globallogic_final_task.git
+cd globallogic_final_task
+terraform init 
+terraform plan
+terraform apply
+```
+
+<img width="1440" alt="image" src="https://user-images.githubusercontent.com/117667360/219942435-7e2825a3-1302-4230-b470-0806257e3cbf.png">
