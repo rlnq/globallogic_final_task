@@ -9,7 +9,7 @@
 							
 #### Ansible:	
 * perform basic hardening (keyless-only ssh, unattended upgrade, firewall)						
-* (optional) perform hardening to reach CIS-CAT score at least 80 (please find https://learn.cisecurity.org/cis-cat-lite)						
+* (optional) perform hardening to reach CIS-CAT score at least 80 (please find https://learn.cisecurity.org/cis-cat-lite)				
 * deploy K8s (single-node cluster via Kubespray)						
 							
 #### Kubernetes:	
@@ -19,12 +19,19 @@
 --------------------------------
 
 ### Requirements:
-azure free trial account
-azure-cli v2.45.0
-terraform v1.3.7
-docker v20.10.22
+* azure free trial account
+* azure-cli v2.45.0
+* terraform v1.3.7
+* docker v20.10.22
 
-### Steps:
+-------------------------------
+
+## Part 1 - Terraform
+* create VPC in GCP/Azure						
+* create instance with External IP						
+* prepare managed DB (MySQL)	
+
+### Steps: 
 
 * Clone terraform code to our local machines 
 ```
@@ -49,20 +56,35 @@ terraform apply
 
 <img width="1440" alt="image" src="https://user-images.githubusercontent.com/117667360/219942435-7e2825a3-1302-4230-b470-0806257e3cbf.png">
 
-* ### Clone Kubespray release repository to local machine:
+-----------------
+
+## Part 2 - Ansible
+* perform basic hardening (keyless-only ssh, unattended upgrade, firewall)						
+* (optional) perform hardening to reach CIS-CAT score at least 80 (please find https://learn.cisecurity.org/cis-cat-lite)				
+* deploy K8s (single-node cluster via Kubespray)
+
+
+## Steps:
+### perform basic hardening (keyless-only ssh, unattended upgrade, firewall)
+* in process
+### (optional) perform hardening to reach CIS-CAT score at least 80 (please find https://learn.cisecurity.org/cis-cat-lite)
+* in process
+### deploy K8s (single-node cluster via Kubespray)
+
+* Clone Kubespray release repository to local machine:
 ```
 git clone https://github.com/kubernetes-sigs/kubespray.git
 cd kubespray
 git checkout release-2.20
 ```
-* ### Copy and edit inventory file
+* Copy and edit inventory file
 ```
 cp -rfp inventory/sample inventory/mycluster
 nano inventory/mycluster/inventory.ini
 ```
 <img width="1437" alt="image" src="https://user-images.githubusercontent.com/117667360/219942979-616dac52-3bc6-4589-9d3a-d8c3511e6bb8.png">
 
-* ### Turn on MetalLB
+* Turn on MetalLB
 ```
 nano inventory/mycluster/group_vars/k8s_cluster/addons.yml
 ```
@@ -82,11 +104,11 @@ nano inventory/mycluster/group_vars/k8s_cluster/k8s-cluster.yml
 ```
 kube_proxy_strict_arp: true
 ```
-* ### Run execute container
+* Run execute container
 ```
 docker run --rm -it -v /*your_folder*/kubespray:/mnt -v ~/.ssh:/pem   quay.io/kubespray/kubespray:v2.20.0 bash
 ```
-* ### Go to kubespray folder
+* Go to kubespray folder
 ```
 cd /mnt
 ```
@@ -100,4 +122,3 @@ ansible-playbook -i inventory/mycluster/inventory.ini --private-key /pem/id_rsa 
 kubectl get nodes
 kubectl get ns
 ```
-<img width="1197" alt="image" src="https://user-images.githubusercontent.com/117667360/217352562-7ae90e21-6230-48fc-bee1-1597e515a5d9.png">
