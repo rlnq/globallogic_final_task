@@ -119,6 +119,14 @@ ansible-playbook -i inventory/mycluster/inventory.ini --private-key /pem/id_rsa 
 <img width="1440" alt="image" src="https://user-images.githubusercontent.com/117667360/219946113-926c1a4b-aaf3-4bb8-ab4a-38057e61db8e.png">
 
 ```
+mkdir ~/.kube
+sudo cp /etc/kubernetes/admin.conf ~/.kube/config
+sudo chmod 777 ~/.kube/config
+```
+* Get info about kubectl cluster, nodes and namespaces:
+```
+kubectl cluster-info
 kubectl get nodes
 kubectl get ns
 ```
+<img width="1236" alt="image" src="https://user-images.githubusercontent.com/117667360/219949690-796c9836-3677-4b98-bd2c-6674bf750464.png">
