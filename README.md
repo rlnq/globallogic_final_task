@@ -16,22 +16,40 @@
 * prepare ansible-playbook for deploying Wordpress						
 * deploy WordPress with connection to DataBase	
 
-Requirements:
-az-cli
+--------------------------------
+
+### Requirements:
+azure free trial account
+azure-cli v2.45.0
+terraform v1.3.7
+docker v20.10.22
 
 ### Steps:
 
+* Clone terraform code to our local machines 
 ```
 git clone https://github.com/rlnq/globallogic_final_task.git
+```
+* Go to project folder
+```
 cd globallogic_final_task
+```
+* Initialization
+```
 terraform init 
+```
+* This will show you a preview of the infrastructure that will be created based on your configuration file.
+```
 terraform plan
+```
+* Type terraform apply, and press Enter. This will create the specified infrastructure.
+```
 terraform apply
 ```
 
 <img width="1440" alt="image" src="https://user-images.githubusercontent.com/117667360/219942435-7e2825a3-1302-4230-b470-0806257e3cbf.png">
 
-* ### Clone Kubespray release repository:
+* ### Clone Kubespray release repository to local machine:
 ```
 git clone https://github.com/kubernetes-sigs/kubespray.git
 cd kubespray
@@ -45,7 +63,6 @@ nano inventory/mycluster/inventory.ini
 <img width="1437" alt="image" src="https://user-images.githubusercontent.com/117667360/219942979-616dac52-3bc6-4589-9d3a-d8c3511e6bb8.png">
 
 * ### Turn on MetalLB
-
 ```
 nano inventory/mycluster/group_vars/k8s_cluster/addons.yml
 ```
@@ -65,17 +82,15 @@ nano inventory/mycluster/group_vars/k8s_cluster/k8s-cluster.yml
 ```
 kube_proxy_strict_arp: true
 ```
-
 * ### Run execute container
 ```
 docker run --rm -it -v /*your_folder*/kubespray:/mnt -v ~/.ssh:/pem   quay.io/kubespray/kubespray:v2.20.0 bash
 ```
-
-* ### Go to kubespray folder and start ansible-playbook
+* ### Go to kubespray folder
 ```
-cd /mnt/kubespray
+cd /mnt
 ```
-
+* Start ansible-playbook with inventory file and  private key
 ```
 ansible-playbook -i inventory/mycluster/inventory.ini --private-key /pem/id_rsa -e ansible_user=azureuser -b  cluster.yml
 ```
