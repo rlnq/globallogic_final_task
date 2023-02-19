@@ -42,7 +42,7 @@ git checkout release-2.20
 cp -rfp inventory/sample inventory/mycluster
 nano inventory/mycluster/inventory.ini
 ```
-<img width="1250" alt="image" src="https://user-images.githubusercontent.com/117667360/216760216-45ffe798-c5e4-47e7-81f1-0a222409027d.png">
+<img width="1437" alt="image" src="https://user-images.githubusercontent.com/117667360/219942979-616dac52-3bc6-4589-9d3a-d8c3511e6bb8.png">
 
 * ### Turn on MetalLB
 
@@ -50,22 +50,20 @@ nano inventory/mycluster/inventory.ini
 nano inventory/mycluster/group_vars/k8s_cluster/addons.yml
 ```
 ```
+# MetalLB deployment
 metallb_enabled: true
 metallb_speaker_enabled: true
-metallb_avoid_buggy_ips: true
 metallb_ip_range:
-  - "10.200.0.2/32"
-# 10.200.0.2 VM private IP address
+  - "10.0.1.4"
+metallb_avoid_buggy_ips: true
 ```
-<img width="1207" alt="image" src="https://user-images.githubusercontent.com/117667360/217276964-a1119a50-e89b-4efd-ac7e-9184ca439e08.png">
-
+<img width="700" alt="image" src="https://user-images.githubusercontent.com/117667360/219943052-f23b3406-6c15-414b-ad61-e2bbdd66519e.png">
 ```
 nano inventory/mycluster/group_vars/k8s_cluster/k8s-cluster.yml
 ```
 ```
 kube_proxy_strict_arp: true
 ```
-<img width="1022" alt="image" src="https://user-images.githubusercontent.com/117667360/217277394-aa6d70fe-945f-43f8-8bc5-9f911459c61b.png">
 
 * ### Run execute container
 ```
