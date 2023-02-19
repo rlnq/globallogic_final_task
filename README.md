@@ -58,6 +58,7 @@ metallb_ip_range:
 metallb_avoid_buggy_ips: true
 ```
 <img width="700" alt="image" src="https://user-images.githubusercontent.com/117667360/219943052-f23b3406-6c15-414b-ad61-e2bbdd66519e.png">
+
 ```
 nano inventory/mycluster/group_vars/k8s_cluster/k8s-cluster.yml
 ```
@@ -76,7 +77,7 @@ cd /mnt/kubespray
 ```
 
 ```
-ansible-playbook -i inventory/mycluster/inventory.ini --private-key /pem/id_rsa -e ansible_user=root -b  cluster.yml
+ansible-playbook -i inventory/mycluster/inventory.ini --private-key /pem/id_rsa -e ansible_user=azureuser -b  cluster.yml
 ```
 <img width="1440" alt="image" src="https://user-images.githubusercontent.com/117667360/217348736-a84dc206-6549-45da-a3b3-306cf2595f7e.png">
 
