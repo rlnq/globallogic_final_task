@@ -67,7 +67,7 @@ terraform apply
 ## Steps:
 ### perform basic hardening (keyless-only ssh, unattended upgrade, firewall)
 ```
-ansible-playbook -i hosts hardening.yml
+ansible-playbook hardening.yml
 ```
 <img width="1440" alt="image" src="https://user-images.githubusercontent.com/117667360/220198280-a84f5af6-5d5f-4b3d-a198-bbef45906bc3.png">
 
@@ -134,3 +134,13 @@ kubectl get nodes
 kubectl get ns
 ```
 <img width="1236" alt="image" src="https://user-images.githubusercontent.com/117667360/219949690-796c9836-3677-4b98-bd2c-6674bf750464.png">
+
+Kubernetes
+
+```
+ansible-galaxy collection install kubernetes.core
+```
+```
+ansible-playbook wordpress.yml
+```
+<img width="1438" alt="image" src="https://user-images.githubusercontent.com/117667360/220208371-4c4c6bc2-ab88-4fc6-8ced-20affdd666f6.png">
