@@ -1,0 +1,57 @@
+---
+- name: Deploy WordPress on Kubernetes
+  hosts: all
+  collections:
+    - kubernetes.core
+  become: yes
+
+  vars:
+    wordpress_namespace: "default"
+    wordpress_db_name: "acctest-db-d1"
+    wordpress_db_user: "4dm1n157r470r"
+    wordpress_db_password: "mysql2023_"
+    wordpress_db_host: "new-sql-server-5.database.windows.net"
+
+  tasks:
+    - name: Create WordPress namespace
+      k8s:
+        state: present
+        kind: Namespace
+        name: "{{ wordpress_namespace }}"
+
+    
+    - name: Create WordPress deployment
+      k8s:
+        state: present
+        definition: "{{ lookup('template', 'wordpress.yaml.j2') }}"
+        namespace: "{{ wordpress_namespace }}"
+
+
+    - name: Expose WordPress service
+      k8s:
+        state: present
+        definition:
+          apiVersion: v1
+          kind: Service
+          metadata:
+            name: wordpress
+            namespace: "{{ wordpress_namespace }}"
+            annotations:
+              "service.beta.kubernetes.io/aws-load-balancer-type": "nlb"
+              "service.beta.kubernetes.io/aws-load-balancer-backend-protocol": "http"
+          spec:
+            type: LoadBalancer
+            selector:
+              app: wordpress
+            ports:
+            - name: http
+              port: 80
+              targetPort: 80
+
+
+    - name: Display WordPress URL
+      debug:
+        msg: "WordPress URL: http://{{ item.status.loadBalancer.ingress[0].hostname }}"
+      when: item.status.loadBalancer.ingress is defined
+      with_items: "{{ wordpress_deploy_status.resources }}"
+
