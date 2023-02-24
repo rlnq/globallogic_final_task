@@ -144,4 +144,6 @@ ansible-playbook wordpress.yml
 
 ### Result:
 
+<img width="774" alt="image" src="https://user-images.githubusercontent.com/117667360/221285282-fcae684e-6459-4a74-9881-c43373223815.png">
+
 <img width="1306" alt="image" src="https://user-images.githubusercontent.com/117667360/221283662-d4c4739e-2f47-48b6-853d-b5be6596ff64.png">
