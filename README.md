@@ -133,14 +133,14 @@ kubectl get ns
 ```
 <img width="1236" alt="image" src="https://user-images.githubusercontent.com/117667360/219949690-796c9836-3677-4b98-bd2c-6674bf750464.png">
 
-Kubernetes
+## Part 3 - Kubernetes
 
 ```
 ansible-playbook wordpress.yml
 ```
 <img width="1438" alt="image" src="https://user-images.githubusercontent.com/117667360/220208371-4c4c6bc2-ab88-4fc6-8ced-20affdd666f6.png">
 
-### Result:
+## Result:
 
 <img width="774" alt="image" src="https://user-images.githubusercontent.com/117667360/221285282-fcae684e-6459-4a74-9881-c43373223815.png">
 
