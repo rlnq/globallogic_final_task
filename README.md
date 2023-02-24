@@ -71,8 +71,6 @@ ansible-playbook hardening.yml
 ```
 <img width="1440" alt="image" src="https://user-images.githubusercontent.com/117667360/220198280-a84f5af6-5d5f-4b3d-a198-bbef45906bc3.png">
 
-### (optional) perform hardening to reach CIS-CAT score at least 80 (please find https://learn.cisecurity.org/cis-cat-lite)
-* in process
 ### deploy K8s (single-node cluster via Kubespray)
 
 * Clone Kubespray release repository to local machine:
