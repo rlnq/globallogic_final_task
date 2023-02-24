@@ -141,3 +141,7 @@ Kubernetes
 ansible-playbook wordpress.yml
 ```
 <img width="1438" alt="image" src="https://user-images.githubusercontent.com/117667360/220208371-4c4c6bc2-ab88-4fc6-8ced-20affdd666f6.png">
+
+### Result:
+
+<img width="1306" alt="image" src="https://user-images.githubusercontent.com/117667360/221283662-d4c4739e-2f47-48b6-853d-b5be6596ff64.png">
