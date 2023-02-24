@@ -138,9 +138,6 @@ kubectl get ns
 Kubernetes
 
 ```
-ansible-galaxy collection install kubernetes.core
-```
-```
 ansible-playbook wordpress.yml
 ```
 <img width="1438" alt="image" src="https://user-images.githubusercontent.com/117667360/220208371-4c4c6bc2-ab88-4fc6-8ced-20affdd666f6.png">
